@@ -1,25 +1,42 @@
+import { useEffect, useState } from 'react';
 import ProductSection from '@/components/ProductSection';
-import { officeProducts } from '@/data/products';
+import api from '@/lib/axios';
 
 const Office = () => {
+  const [officeProducts, setOfficeProducts] = useState([]);
+
+  useEffect(() => {
+    const fetchOfficeProducts = async () => {
+      try {
+        const res = await api.get('/products/category/office');
+        setOfficeProducts(res.data.data);
+      } catch (error) {
+        console.error('Error fetching office products:', error);
+      }
+    };
+
+    fetchOfficeProducts();
+  }, []);
+
   return (
-    <main className="pt-20">
+    <main className='pt-20'>
       {/* Hero Section */}
-      <section className="py-20 bg-primary">
-        <div className="container mx-auto px-4 text-center">
-          <h1 className="text-4xl md:text-6xl font-serif font-bold text-primary-foreground mb-6">
-            Office <span className="text-secondary">Furniture</span>
+      <section className='py-20 bg-primary'>
+        <div className='container mx-auto px-4 text-center'>
+          <h1 className='text-4xl md:text-6xl font-serif font-bold text-primary-foreground mb-6'>
+            Office <span className='text-secondary'>Furniture</span>
           </h1>
-          <p className="text-xl text-primary-foreground/80 max-w-3xl mx-auto">
-            Create a productive workspace with our professional furniture solutions
+          <p className='text-xl text-primary-foreground/80 max-w-3xl mx-auto'>
+            Create a productive workspace with our professional furniture
+            solutions
           </p>
         </div>
       </section>
 
       <ProductSection
-        id="office"
-        title="Our Office Collection"
-        subtitle="Professional furniture for your modern workspace"
+        id='office'
+        title='Our Office Collection'
+        subtitle='Professional furniture for your modern workspace'
         products={officeProducts}
       />
     </main>
