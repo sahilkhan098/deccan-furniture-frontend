@@ -1,7 +1,21 @@
-import axios from 'axios'
+import axios from 'axios';
 
 const api = axios.create({
-     baseURL: "http://localhost:5000/api"
-})
+  baseURL: 'http://localhost:5000/api',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  // Optional: Add timeout, withCredentials, etc.
+  timeout: 10000,
+});
 
-export default api
+// Optional: Add request/response interceptors
+api.interceptors.request.use((config) => {
+  const token = localStorage.getItem('token');
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+  return config;
+});
+
+export default api;
