@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'https://deccan-furniture-backend.onrender.com/',
+  baseURL: 'https://deccan-furniture-backend.vercel.app/',
   headers: {
     'Content-Type': 'application/json',
   },
