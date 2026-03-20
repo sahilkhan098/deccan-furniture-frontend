@@ -8,7 +8,7 @@ const Table = () => {
   useEffect(() => {
     const fetchTableProducts = async () => {
       try {
-        const res = await api.get('/products/category/table');
+        const res = await api.get('api/products/category/table');
         setTableProducts(res.data.data);
       } catch (error) {
         console.error('Error fetching table products:', error);
