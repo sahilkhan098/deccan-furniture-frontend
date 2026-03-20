@@ -30,6 +30,19 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // ✅ Lock body scroll when menu is open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
+  }, [isOpen]);
+
   const handleLinkClick = () => {
     setIsOpen(false);
   };
@@ -119,13 +132,17 @@ const Navbar = () => {
         </div>
       </nav>
 
-      {/* ✅ FULL SCREEN MOBILE MENU */}
+      {/* ✅ FULL SCREEN MOBILE MENU WITH SCROLL */}
       <div
         className={`fixed top-20 left-0 w-full h-[calc(100vh-80px)] bg-primary z-40 transform transition-transform duration-300 ${
           isOpen ? 'translate-x-0' : '-translate-x-full'
         }`}
       >
-        <div className='flex flex-col p-4 space-y-2 overflow-y-auto h-full'>
+        <div className='flex flex-col p-4 space-y-2 h-full overflow-y-auto overscroll-contain'>
+          
+          {/* Optional top spacing */}
+          <div className='h-2' />
+
           {navItems.map((item) => (
             <Link
               key={item.name}
@@ -136,6 +153,9 @@ const Navbar = () => {
               {item.name}
             </Link>
           ))}
+
+          {/* Bottom spacing for better scroll UX */}
+          <div className='h-10' />
         </div>
       </div>
     </>
