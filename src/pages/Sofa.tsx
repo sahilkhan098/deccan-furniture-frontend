@@ -8,7 +8,7 @@ const Sofa = () => {
   useEffect(() => {
     const fetchSofaProducts = async () => {
       try {
-        const res = await api.get('/api/products/category/sofa');
+        const res = await api.get('api/products/category/sofa');
         setSofaProducts(res.data.data);
       } catch (error) {
         console.error('Error fetching sofa products:', error);
