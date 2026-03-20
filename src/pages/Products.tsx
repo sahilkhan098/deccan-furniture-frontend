@@ -14,11 +14,11 @@ const Products = () => {
       try {
         const [sofasRes, chairsRes, tablesRes, officeRes, diningRes] =
           await Promise.all([
-            api.get('/products/category/sofa'),
-            api.get('/products/category/chair'),
-            api.get('/products/category/table'),
-            api.get('/products/category/office'),
-            api.get('/products/category/dining'),
+            api.get('api/products/category/sofa'),
+            api.get('api/products/category/chair'),
+            api.get('api/products/category/table'),
+            api.get('api/products/category/office'),
+            api.get('api/products/category/dining'),
           ]);
 
         // ⚠️ Important: your backend returns { success, data }
