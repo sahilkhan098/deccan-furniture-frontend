@@ -8,7 +8,7 @@ const Chair = () => {
   useEffect(() => {
     const fetchChairs = async () => {
       try {
-        const res = await api.get('/products/category/chair');
+        const res = await api.get('api/products/category/chair');
         setChairProducts(res.data.data);
       } catch (error) {
         console.error('Error fetching chair products:', error);
