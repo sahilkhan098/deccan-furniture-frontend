@@ -8,7 +8,7 @@ const Dining = () => {
   useEffect(() => {
     const fetchDiningProducts = async () => {
       try {
-        const res = await api.get('/products/category/dining');
+        const res = await api.get('api/products/category/dining');
         setDiningProducts(res.data.data);
       } catch (error) {
         console.error('Error fetching dining products:', error);
